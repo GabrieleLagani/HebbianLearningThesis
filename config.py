@@ -1,9 +1,11 @@
 import params as P
 import basemodel.model, basemodel.model_no_bias, basemodel.model_bn_before_relu, \
 	basemodel.model1, basemodel.model1_no_bias, basemodel.model2, basemodel.model3, basemodel.model4, \
-	basemodel.top1, basemodel.top2, basemodel.top3, basemodel.top4, basemodel.fc, basemodel.fc_no_bias
+	basemodel.top1, basemodel.top2, basemodel.top3, basemodel.top4, basemodel.fc, basemodel.fc_no_bias, \
+	basemodel.triplefc
 import hebbmodel.model, hebbmodel.model1, hebbmodel.model1_som, \
-	hebbmodel.top1, hebbmodel.top2, hebbmodel.top3, hebbmodel.top4, hebbmodel.fc
+	hebbmodel.top1, hebbmodel.top2, hebbmodel.top3, hebbmodel.top4, hebbmodel.fc, \
+	hebbmodel.top4_bw, hebbmodel.triplefc, hebbmodel.triplefc_bw
 
 
 class Configuration:
@@ -903,7 +905,7 @@ CONFIG_LIST = [
 	),
 	
 	################################################################################################################
-	####					CONFIGS: HEBB CLASSIFIER ON FEATURES EXTRACTED FROM GDES LAYERS						####
+	####					CONFIGS: HEBB CLASSIFIER ON FEATURES EXTRACTED FROM GDES LAYERS 					####
 	################################################################################################################
 	
 	Configuration(
@@ -1237,6 +1239,125 @@ CONFIG_LIST = [
 		config_family=P.CONFIG_FAMILY_HEBB,
 		config_name='top4', # Val: 83.45, Test: 83.16
 		net_class=hebbmodel.top4.Net,
+		batch_size=64,
+		num_epochs=2,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		pre_net_class=basemodel.model4.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/gdes/config_4l/save/model0.pt',
+		pre_net_out=basemodel.model4.Net.BN4
+	),
+	
+	################################################################################################################
+	####									CONFIGS BACKWARD INTERACTION										####
+	################################################################################################################
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='3fc_on_hebb_conv1', # Val: 70.57, Test: 69.67
+		net_class=basemodel.triplefc.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=True,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-2,
+		pre_net_class=hebbmodel.model1.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/config_1l/save/model0.pt',
+		pre_net_out=hebbmodel.model1.Net.BN1
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_HEBB,
+		config_name='3fc_on_hebb_conv1', # Val: 28.95, Test: 29.11
+		net_class=hebbmodel.triplefc.Net,
+		batch_size=64,
+		num_epochs=2,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=True,
+		pre_net_class=hebbmodel.model1.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/config_1l/save/model0.pt',
+		pre_net_out=hebbmodel.model1.Net.BN1
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_HEBB,
+		config_name='3fcbw_on_hebb_conv1', # Val: 23.21, Test: 23.22
+		net_class=hebbmodel.triplefc_bw.Net,
+		batch_size=64,
+		num_epochs=2,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=True,
+		pre_net_class=hebbmodel.model1.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/config_1l/save/model0.pt',
+		pre_net_out=hebbmodel.model1.Net.BN1
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_HEBB,
+		config_name='top4_bw',
+		net_class=hebbmodel.top4_bw.Net,  # Val: 83.54, Test: 83.04
+		batch_size=64,
+		num_epochs=2,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		pre_net_class=basemodel.model4.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/gdes/config_4l/save/model0.pt',
+		pre_net_out=basemodel.model4.Net.BN4
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='3fc_on_gdes_conv4', # Val: 84.10, Test: 83.82
+		net_class=basemodel.triplefc.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-2,
+		pre_net_class=basemodel.model4.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/gdes/config_4l/save/model0.pt',
+		pre_net_out=basemodel.model4.Net.BN4
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_HEBB,
+		config_name='3fc_on_gdes_conv4', # Val: 82.48, Test: 82.20
+		net_class=hebbmodel.triplefc.Net,
+		batch_size=64,
+		num_epochs=2,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		pre_net_class=basemodel.model4.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/gdes/config_4l/save/model0.pt',
+		pre_net_out=basemodel.model4.Net.BN4
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_HEBB,
+		config_name='3fcbw_on_gdes_conv4', # Val: 80.63, Test: 80.56
+		net_class=hebbmodel.triplefc_bw.Net,
 		batch_size=64,
 		num_epochs=2,
 		iteration_ids=[0],
