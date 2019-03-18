@@ -5,7 +5,8 @@ import basemodel.model, basemodel.model_no_bias, basemodel.model_bn_before_relu,
 	basemodel.triplefc
 import hebbmodel.model, hebbmodel.model1, hebbmodel.model1_som, \
 	hebbmodel.top1, hebbmodel.top2, hebbmodel.top3, hebbmodel.top4, hebbmodel.fc, \
-	hebbmodel.top4_bw, hebbmodel.triplefc, hebbmodel.triplefc_bw
+	hebbmodel.top4_bw, hebbmodel.triplefc, hebbmodel.triplefc_bw, \
+	hebbmodel.g1h2_6, hebbmodel.g1_2h3_6, hebbmodel.g1_3h4_6, hebbmodel.g1_4h5_6
 
 
 class Configuration:
@@ -1250,6 +1251,210 @@ CONFIG_LIST = [
 		pre_net_out=basemodel.model4.Net.BN4
 	),
 	
+	################################################################################################################
+	####											CONFIGS G-H-G 												####
+	################################################################################################################
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1h2g3_6', # Val: 80.42, Test: 80.36
+		net_class=basemodel.top2.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=6e-2,
+		pre_net_class=hebbmodel.g1h2_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_2h3_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1h2_6.Net.BN2
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES, # Val: 80.82, Test: 80.68
+		config_name='g1_2h3g4_6',
+		net_class=basemodel.top3.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-2,
+		pre_net_class=hebbmodel.g1_2h3_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_2h3_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1_2h3_6.Net.BN3
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1_3h4g5_6', # Val: 81.56, Test: 80.92
+		net_class=basemodel.top4.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1_3h4_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_3h4_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1_3h4_6.Net.BN4
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1_4h5g6', # Val: 84.22, Test: 83.75
+		net_class=basemodel.fc.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1_4h5_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_4h5_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1_4h5_6.Net.BN5
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1h2_3g4_6', # Val: 73.65, Test: 72.12
+		net_class=basemodel.top3.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-2,
+		pre_net_class=hebbmodel.g1h2_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1h2_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1h2_6.Net.BN3
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1_2h3_4g5_6', # Val: 75.19, Test: 74.98
+		net_class=basemodel.top4.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1_2h3_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_2h3_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1_2h3_6.Net.BN4
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1_3h4_5g6', # Val: 77.39, Test: 76.86
+		net_class=basemodel.fc.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1_3h4_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_3h4_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1_3h4_6.Net.BN5
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1h2_4g5_6', # Val: 64.21, Test: 63.68
+		net_class=basemodel.top4.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1h2_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1h2_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1h2_6.Net.BN4
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1_2h3_5g6', # Val: 62.89, Test: 62.43
+		net_class=basemodel.fc.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1_2h3_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1_2h3_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1_2h3_6.Net.BN5
+	),
+	
+	Configuration(
+		config_family=P.CONFIG_FAMILY_GDES,
+		config_name='g1h2_5g6', # Val: 47.59, Test: 47.24
+		net_class=basemodel.fc.Net,
+		batch_size=64,
+		num_epochs=20,
+		iteration_ids=[0],
+		val_set_split=40000,
+		augment_data=False,
+		whiten_data=False,
+		learning_rate=1e-3,
+		lr_decay=0.5,
+		milestones=range(10, 20),
+		momentum=0.9,
+		l2_penalty=5e-4,
+		pre_net_class=hebbmodel.g1h2_6.Net,
+		pre_net_mdl_path=P.PROJECT_ROOT + '/results/hebb/g1h2_6/save/model0.pt', # Path to non-exising file, because in this case the model is already loaded in the constructor of the pre-net
+		pre_net_out=hebbmodel.g1h2_6.Net.BN5
+	),
+
 	################################################################################################################
 	####									CONFIGS BACKWARD INTERACTION										####
 	################################################################################################################
