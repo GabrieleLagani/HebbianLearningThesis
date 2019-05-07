@@ -20,9 +20,10 @@ Example:
 To evaluate the network on the CIFAR10 test set, type:  
 `PYTHONPATH=<project root> python <project root>/evaluate.py --<config family>/<config name>`  
 
-For further details, please refer to my thesis work: 
+For further details, please refer to my thesis work (N.B. The latest updates might not be covered in this document): 
 _"Hebbian Learning Algorithms for Training Convolutional Neural Networks - Gabriele Lagani"_  
-Link: `https://drive.google.com/file/d/1Mo-AKTzm5k3hcnO6UkVpNp0Ce0M-U7zc/view?usp=sharing`
+Link: `https://drive.google.com/file/d/1Mo-AKTzm5k3hcnO6UkVpNp0Ce0M-U7zc/view?usp=sharing`  
+
 
 Author: Gabriele Lagani - gabriele.lagani@gmail.com
 
