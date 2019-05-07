@@ -43,7 +43,7 @@ def eval_pass(net, dataset, config, pre_net=None):
 		hits += batch_hits
 		count += batch_count
 	
-	# Compute validation accuracy and error
+	# Compute validation accuracy
 	acc = hits / count
 	
 	return acc

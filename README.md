@@ -1,7 +1,7 @@
-Pytorch implementation of a Hebbian-WTA learning algorithm to train
+Pytorch implementation of Hebbian learning algorithms to train
 deep convolutional neural networks.
-A neural network model is trained on CIFAR10 both using the 
-Hebbian-WTA algorithm and SGD in order to compare the results.
+A neural network model is trained on CIFAR10 both using 
+Hebbian algorithms and SGD in order to compare the results.
 Although Hebbian learning is unsupervised, I also implemented a 
 technique to train the final linear classification layer using the
 Hebbian algorithm in a supervised manner. This is done by applying a 
@@ -17,11 +17,12 @@ you want to run gradient descent or hebbian training, and
 the `config.py` file.  
 Example:  
 `PYTHONPATH=<project root> python <project root>/train.py --config gdes/config_base`  
-To evaluate the network on the CIFAR10 test set, type:
+To evaluate the network on the CIFAR10 test set, type:  
 `PYTHONPATH=<project root> python <project root>/evaluate.py --<config family>/<config name>`  
 
-For further details, please refer to my thesis work:  
-`(a link will be available soon)`
+For further details, please refer to my thesis work: 
+_"Hebbian Learning Algorithms for Training Convolutional Neural Networks - Gabriele Lagani"_  
+Link: `https://drive.google.com/file/d/1Mo-AKTzm5k3hcnO6UkVpNp0Ce0M-U7zc/view?usp=sharing`
 
 Author: Gabriele Lagani - gabriele.lagani@gmail.com
 

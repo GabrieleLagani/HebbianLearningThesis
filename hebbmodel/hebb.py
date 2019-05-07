@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import utils
-import params as P
 
 # Apply unfold operation to input in order to prepare it to be processed against a sliding kernel whose shape
 # is passed as argument.

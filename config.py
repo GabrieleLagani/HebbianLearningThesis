@@ -57,7 +57,7 @@ class Configuration:
 		# Define the splitting point of the training batches between training and validation datasets
 		self.VAL_SET_SPLIT = val_set_split
 		
-		# Define wether to apply data augmentation or whitening
+		# Define whether to apply data augmentation or whitening
 		self.AUGMENT_DATA = augment_data
 		self.WHITEN_DATA = whiten_data
 		
