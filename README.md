@@ -24,7 +24,10 @@ The experiments were performed in the following environment:
 Google CoLaboratory  
 Python version: 3.6  
 Pytorch version: 1.0.0  
-Torchvision version: 0.2.1 (N.B. With successive versions you will get an error at line 27 of the `data.py` file, which can be corrected by replacing `cifar10.train_data` with `cifar10.data`)  
+Torchvision version: 0.2.1 (N.B. With successive versions you will get an error at line 27 
+of the `data.py` file, which can be corrected by replacing `cifar10.train_data` with 
+`cifar10.data`, and at line 75 of the same file, which can be corrected by passing an extra 
+argument `torch.zeros(zca.size(1))` to `LinearTransform`)  
   
 For further details, please refer to my thesis work (N.B. The latest updates might not be covered in this document): 
 _"Hebbian Learning Algorithms for Training Convolutional Neural Networks - Gabriele Lagani"_  
