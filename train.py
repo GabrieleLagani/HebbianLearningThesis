@@ -82,9 +82,6 @@ def run_train_iter(config, iter_id):
 	best_epoch = 0
 	start_time = time.time()
 	for epoch in range(1, config.NUM_EPOCHS + 1):
-		# Update LR scheduler
-		if scheduler is not None: scheduler.step()
-		
 		# Print overall progress information at each epoch
 		utils.print_train_progress(epoch, config.NUM_EPOCHS, time.time()-start_time, best_acc, best_epoch)
 		
@@ -112,6 +109,9 @@ def run_train_iter(config, iter_id):
 			if hasattr(net, 'conv1') and net.input_shape == P.INPUT_SHAPE: utils.plot_grid(net.conv1.weight, config.KNL_PLT_PATH[iter_id])
 			if hasattr(net, 'fc') and net.input_shape == P.INPUT_SHAPE: utils.plot_grid(net.fc.weight.view(-1, *P.INPUT_SHAPE), config.KNL_PLT_PATH[iter_id])
 			print("Model saved!")
+
+		# Update LR scheduler
+		if scheduler is not None: scheduler.step()
 		
 
 if __name__ == '__main__':

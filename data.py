@@ -24,7 +24,7 @@ def get_dataset_stats(limit):
 		
 		# Load dataset
 		cifar10 = CIFAR10(root=P.DATA_FOLDER, train=True, download=True) # Load CIFAR10 dataset
-		X = cifar10.train_data[0:limit] # X is M x N (M = limit: samples, N = 3072: variables per dataset sample)
+		X = cifar10.data[0:limit] # X is M x N (M = limit: samples, N = 3072: variables per dataset sample)
 		
 		# Normalize the data to [0 1] range
 		X = X / 255.
@@ -72,7 +72,7 @@ class DataManager:
 			transforms.Normalize(mean, std)
 		])
 		# Add whitening transformation, if needed
-		if config.WHITEN_DATA: T = transforms.Compose([T, transforms.LinearTransformation(zca)])
+		if config.WHITEN_DATA: T = transforms.Compose([T, transforms.LinearTransformation(zca, torch.zeros(zca.size(1)))])
 		
 		self.T_train = T
 		self.T_test = T

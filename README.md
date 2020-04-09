@@ -20,19 +20,12 @@ Example:
 To evaluate the network on the CIFAR10 test set, type:  
 `PYTHONPATH=<project root> python <project root>/evaluate.py --<config family>/<config name>`
 
-The experiments were performed in the following environment:  
-Google CoLaboratory  
-Python version: 3.6  
-Pytorch version: 1.0.0  
-Torchvision version: 0.2.1 (N.B. With successive versions you will get an error at line 27 
-of the `data.py` file, which can be corrected by replacing `cifar10.train_data` with 
-`cifar10.data`, and at line 75 of the same file, which can be corrected by passing an extra 
-argument `torch.zeros(zca.size(1))` to `LinearTransform`)  
-  
-For further details, please refer to my thesis work (N.B. The latest updates might not be covered in this document): 
-_"Hebbian Learning Algorithms for Training Convolutional Neural Networks - Gabriele Lagani"_  
-Link: `https://drive.google.com/file/d/1Mo-AKTzm5k3hcnO6UkVpNp0Ce0M-U7zc/view?usp=sharing`  
-
+For further details, please refer to my thesis work:  
+_"Hebbian Learning Algorithms for Training Convolutional Neural Networks; G. Lagani"_  
+available at https://drive.google.com/file/d/1Mo-AKTzm5k3hcnO6UkVpNp0Ce0M-U7zc/view?usp=sharing  
+and the related paper:  
+_"Hebbian Learning Meets Deep Convolutional Neural Networks; G. Amato, F. Carrara, F. Falchi, C. Gennaro and G. Lagani"_  
+available at: http://www.nmis.isti.cnr.it/falchi/Draft/2019-ICIAP-HLMSD.pdf  
 
 Author: Gabriele Lagani - gabriele.lagani@gmail.com
 
