@@ -18,7 +18,7 @@ the `config.py` file.
 Example:  
 `PYTHONPATH=<project root> python <project root>/train.py --config gdes/config_base`  
 To evaluate the network on the CIFAR10 test set, type:  
-`PYTHONPATH=<project root> python <project root>/evaluate.py --<config family>/<config name>`
+`PYTHONPATH=<project root> python <project root>/evaluate.py --config <config family>/<config name>`
 
 For further details, please refer to my thesis work:  
 _"Hebbian Learning Algorithms for Training Convolutional Neural Networks; G. Lagani"_  
