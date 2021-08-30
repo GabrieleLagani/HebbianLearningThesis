@@ -9,9 +9,9 @@ teacher signal on the final layer that provides the desired output;
 the neurons are then enforced to update their weights in order to 
 follow that signal.
 
-You might want to give a look at the new repos as well!
-HebbianPCA: https://github.com/GabrieleLagani/HebbianPCA/blob/master/README.md
-Latest updates: https://github.com/GabrieleLagani/HebbianLearning
+You might want to give a look at the new repos as well!  
+HebbianPCA: https://github.com/GabrieleLagani/HebbianPCA/blob/master/README.md  
+Latest updates: https://github.com/GabrieleLagani/HebbianLearning  
 
 In order to launch a training session, type:  
 `PYTHONPATH=<project root> python <project root>/train.py --config <config family>/<config name>`  
